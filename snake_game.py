@@ -4,12 +4,19 @@ import random
 pygame.init()
 
 WIDTH, HEIGHT = 600, 400
+
+# Load background image once (after pygame.init)
+background = pygame.image.load("python_bg.jpg")  # replace with your image filename
+background = pygame.transform.scale(background, (WIDTH, HEIGHT))  # scale to fit window
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Snake Game")
 
 BLACK = (0, 0, 0)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+PINK = (255, 192, 203)
+ORANGE = (255, 165, 0)
 
 clock = pygame.time.Clock()
 FPS = 10
@@ -115,16 +122,14 @@ while running:
                 game_over = True
 
     # Drawing
-    background = pygame.image.load("background.png")
-    background = pygame.transform.scale(background, (WIDTH, HEIGHT))
-    screen.blit(background, (0, 0))
+    screen.blit(background, (0, 0))  # draw background image
 
     # Draw snake
     for pos in snake_body:
-        pygame.draw.rect(screen, BLACK, pygame.Rect(pos[0], pos[1], BLOCK_SIZE, BLOCK_SIZE))
+        pygame.draw.rect(screen, GREEN, pygame.Rect(pos[0], pos[1], BLOCK_SIZE, BLOCK_SIZE))
 
     # Draw food
-    pygame.draw.rect(screen, RED, pygame.Rect(food_pos[0], food_pos[1], BLOCK_SIZE, BLOCK_SIZE))
+    pygame.draw.rect(screen, ORANGE, pygame.Rect(food_pos[0], food_pos[1], BLOCK_SIZE, BLOCK_SIZE))
 
     # Display score
     font = pygame.font.Font(None, 36)
