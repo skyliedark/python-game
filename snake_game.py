@@ -115,7 +115,9 @@ while running:
                 game_over = True
 
     # Drawing
-    screen.fill(GREEN)
+    background = pygame.image.load("background.png")
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))
+    screen.blit(background, (0, 0))
 
     # Draw snake
     for pos in snake_body:
